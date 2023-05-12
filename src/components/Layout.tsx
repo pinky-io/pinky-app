@@ -1,10 +1,11 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Outlet } from "react-router-dom";
 
 export const Layout = ({}) => {
   return (
     <>
       <header>
-        <h1>Header</h1>
+        <ConnectButton />
       </header>
       <main>
         <Outlet />
