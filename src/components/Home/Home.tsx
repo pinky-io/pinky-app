@@ -1,7 +1,8 @@
 import React from "react"
+import { RentContainer } from "./Rent"
 
 const Home = () => {
-  return <div>Home</div>
+  return <RentContainer />
 }
 
 export default Home
