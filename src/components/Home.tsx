@@ -1,3 +1,5 @@
+import { RentContainer } from "./Rent";
+
 export const Home = () => {
-  return <div>Home</div>;
+  return <RentContainer />;
 };
