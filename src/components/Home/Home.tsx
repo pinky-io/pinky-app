@@ -1,5 +1,5 @@
 import React from "react"
-import { RentContainer } from "./Rent"
+import { RentContainer } from "../index"
 
 const Home = () => {
   return <RentContainer />
