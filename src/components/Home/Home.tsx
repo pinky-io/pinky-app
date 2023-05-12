@@ -1,4 +1,4 @@
-import { RentContainer } from "../index"
+import { RentContainer } from "../"
 
 const Home = () => {
   return <RentContainer />

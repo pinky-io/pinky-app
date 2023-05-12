@@ -1,2 +1,2 @@
 export { default as Home } from "./Home/Home"
-export * from "./Rent/index"
+export * from "./Rent"
