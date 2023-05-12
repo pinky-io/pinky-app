@@ -1,4 +1,3 @@
-import React from "react"
 import { RentContainer } from "../index"
 
 const Home = () => {
