@@ -1,1 +1,1 @@
-export * from "./Home"
+export { default as Input } from "./Home/Home"
