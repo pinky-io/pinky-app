@@ -1,24 +1,24 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { Box, Tab, Tabs } from "@mui/material";
-import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList";
-import { colors } from "../../constants";
+import { Box, Tab, Tabs } from "@mui/material"
+import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList"
+import { colors } from "../../constants"
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
-  };
+  }
 }
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+  children?: React.ReactNode
+  index: number
+  value: number
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props
 
   return (
     <div
@@ -30,22 +30,24 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
-  );
+  )
 }
 
 const Home = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <>
+      <h1>Catalogue</h1>
       <Tabs
         value={value}
         onChange={handleChange}
         aria-label="basic tabs example"
+        indicatorColor="secondary"
       >
         <Tab
           label="Available to Borrow"
@@ -67,16 +69,16 @@ const Home = () => {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <CurrentlyAvailableBorrowList />
+        <CurrentlyAvailableBorrowList />1
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CurrentlyAvailableBorrowList />
+        <CurrentlyAvailableBorrowList />2
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <CurrentlyAvailableBorrowList />
+        <CurrentlyAvailableBorrowList />3
       </TabPanel>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,5 +1,6 @@
 // @ts-ignore
 import React from "react"
+import { Link } from "react-router-dom"
 import { Profil } from "../Icons"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
@@ -9,19 +10,19 @@ const Header = () => {
   const { isConnected } = useAccount()
   return (
     <header className={s.container}>
-      <a className={s.logo} href="/">
+      <Link className={s.logo} to="/">
         Pinky
-      </a>
+      </Link>
       <div className={s.rightContainer}>
         <div className={s.connectButton}>
           <ConnectButton />
         </div>
         {isConnected ? (
-          <a className={s.profilContainer} href="/account">
+          <Link className={s.profilContainer} to="/account">
             <div className={s.profil}>
               <Profil />
             </div>
-          </a>
+          </Link>
         ) : null}
       </div>
     </header>

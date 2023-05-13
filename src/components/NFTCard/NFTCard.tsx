@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
-import { Button } from "../Button";
+import { Typography } from "@mui/material"
+import { Button } from "../Button"
 import {
   Content,
   SubContent,
@@ -9,24 +9,29 @@ import {
   DurationSpan,
   Price,
   Image,
-} from "..";
+} from ".."
 
-export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED";
+import s from "./NFTCard.module.css"
+
+export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED"
+export type Types = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT"
 
 export type NFTData = {
   collection: {
-    name: string;
-    address: string;
-  };
-  tokenId: string;
-  lendPrice?: number;
-  lendDuration?: number;
-  status: NFTStatus;
-};
+    name: string
+    address: string
+  }
+  tokenId: string
+  lendPrice?: number
+  lendDuration?: number
+  currency: string
+  status: NFTStatus
+}
 
 type NFTCardProps = NFTData & {
-  openLendModal(nft: NFTData): void;
-};
+  openLendModal(nft: NFTData): void
+  type: Types
+}
 
 export const NFTCard = ({
   collection,
@@ -34,38 +39,60 @@ export const NFTCard = ({
   tokenId,
   lendDuration,
   lendPrice,
+  currency,
   openLendModal,
+  type,
 }: NFTCardProps) => {
-  
+  console.log(type)
   const handleLend = () => {
     openLendModal({
       collection,
       tokenId,
       lendDuration,
       lendPrice,
+      currency,
       status,
-    });
-  };
+    })
+  }
 
   return (
-    <Content>
+    <Content className={s.container}>
       <Image src="/nft.png" />
       <SubContent>
-        <Typography variant="h5">{collection.name}</Typography>
-        <Row>
-          <Subtitle>#{tokenId}</Subtitle>
-          <Column>
-            <Subtitle>Max duration</Subtitle>
-            <DurationSpan>{lendDuration} days</DurationSpan>
-          </Column>
+        <Row marginBottom={2}>
+          <div>
+            {collection.name ? (
+              <Typography variant="h5">{collection.name}</Typography>
+            ) : null}
+            {tokenId ? <Subtitle>#{tokenId}</Subtitle> : null}
+          </div>
+          {type !== "MYWALLET" && lendDuration ? (
+            <div className={s.nftInfos}>
+              {type === "AVAILABLE" ? <Subtitle>Max duration</Subtitle> : null}
+              {type === "BORROWED" ? <Subtitle>Return Date</Subtitle> : null}
+              {type === "LENT" ? <Subtitle>Duration</Subtitle> : null}
+              <DurationSpan>{lendDuration} days</DurationSpan>
+            </div>
+          ) : null}
         </Row>
-        <Row>
-          <Price>
-            {lendPrice} ETH <Subtitle>per day</Subtitle>
-          </Price>
-        </Row>
-        {status === "AVAILABLE" && <Button onClick={handleLend}>Borrow</Button>}
+        {["AVAILABLE", "LENT"].includes(type) && lendPrice && currency ? (
+          <Row marginBottom={2}>
+            <Price>
+              {lendPrice} {currency} <Subtitle>per day</Subtitle>
+            </Price>
+          </Row>
+        ) : null}
+        {type === "BORROWED" && lendDuration ? (
+          <Row marginBottom={2}>
+            <Price>
+              {/* TODO CALCUL DAYS LEFT */}
+              19 days left
+            </Price>
+          </Row>
+        ) : null}
+        {type === "MYWALLET" && <Button onClick={handleLend}>Lend</Button>}
+        {type === "AVAILABLE" && <Button onClick={handleLend}>BORROW</Button>}
       </SubContent>
     </Content>
-  );
-};
+  )
+}
