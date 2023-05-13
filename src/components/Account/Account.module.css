@@ -1,6 +1,13 @@
+.container > div {
+  margin-bottom: 32px;
+}
+
+.container > div > div {
+  padding: 0;
+}
+
 .nftList {
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
-  /* justify-content: space-evenly; */
 }

@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { Box, Tab, Tabs } from "@mui/material";
-import { colors } from "../../constants";
-import s from "./Account.module.css";
-import { NFTList } from "../NFTList";
-import { mywallet, nftborrowed, nftlent } from "../../mock";
-import { LendModal } from "../LendModal";
-import { NFTData } from "../NFTCard";
+import { Box, Tab, Tabs } from "@mui/material"
+import { colors } from "../../constants"
+import s from "./Account.module.css"
+import { NFTList } from "../NFTList"
+import { mywallet, nftborrowed, nftlent } from "../../mock"
+import { LendModal } from "../LendModal"
+import { NFTData } from "../NFTCard"
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
-  };
+  }
 }
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+  children?: React.ReactNode
+  index: number
+  value: number
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props
 
   return (
     <div
@@ -34,7 +34,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
-  );
+  )
 }
 
 const props = {
@@ -47,26 +47,26 @@ const props = {
   lendPrice: 1,
   type: "MYWALLET",
   currency: "ETH",
-} as const;
+} as const
 
 const Account = () => {
-  const [activeNft, setActiveNft] = useState<NFTData | null>(null);
-  const [lendModalOpen, setlendModalOpen] = useState(false);
-  const [value, setValue] = useState(0);
+  const [activeNft, setActiveNft] = useState<NFTData | null>(null)
+  const [lendModalOpen, setlendModalOpen] = useState(false)
+  const [value, setValue] = useState(0)
 
   const handleLendModalOpen = (nft: NFTData) => {
-    setActiveNft(nft);
-    setlendModalOpen(true);
-  };
+    setActiveNft(nft)
+    setlendModalOpen(true)
+  }
 
   const handleLendModalClose = () => {
-    setActiveNft(null);
-    setlendModalOpen(false);
-  };
+    setActiveNft(null)
+    setlendModalOpen(false)
+  }
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <div className={s.container}>
@@ -97,7 +97,7 @@ const Account = () => {
         nft={activeNft}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Account;
+export default Account

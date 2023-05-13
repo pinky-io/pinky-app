@@ -1,16 +1,16 @@
-import styled from "@emotion/styled";
-import { NFTCard, NFTData } from "../NFTCard";
+import styled from "@emotion/styled"
+import { NFTCard, NFTData } from "../NFTCard"
 
 type NFTListProps = {
-  nfts: NFTData[];
-  openLendModal: (nft: NFTData) => void;
-};
+  nfts: NFTData[]
+  openLendModal: (nft: NFTData) => void
+}
 
 const Container = styled.div`
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
-`;
+`
 
 export const NFTList = ({ nfts, openLendModal }: NFTListProps) => (
   <Container>
@@ -22,4 +22,4 @@ export const NFTList = ({ nfts, openLendModal }: NFTListProps) => (
       />
     ))}
   </Container>
-);
+)
