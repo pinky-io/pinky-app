@@ -87,7 +87,7 @@ export const LendModal = ({
               Total price : {day * price} {nft.currency}
             </p>
             <Button className={s.button} onClick={handleLend}>
-              Rent
+              Lend
             </Button>
           </div>
         </div>

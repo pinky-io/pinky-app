@@ -86,7 +86,7 @@ export const NFTCard = ({
           </Row>
         ) : null}
         {type === "MYWALLET" && <Button onClick={handleLend}>Lend</Button>}
-        {type === "AVAILABLE" && <Button onClick={handleLend}>Rent</Button>}
+        {type === "AVAILABLE" && <Button onClick={handleLend}>Borrow</Button>}
       </SubContent>
     </Content>
   )

@@ -70,7 +70,7 @@ export const BorrowModal = ({
               Total price : {(day || 0) * (nft.lendPrice || 0)} {nft.currency}
             </p>
             <Button className={s.button} onClick={handleRent}>
-              Rent
+              Borrow
             </Button>
           </div>
         </div>
