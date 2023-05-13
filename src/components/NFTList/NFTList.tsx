@@ -17,8 +17,12 @@ const Container = styled.div`
 
 export const NFTList = ({ nfts, openLendModal }: NFTListProps) => (
   <Container>
-    {nfts.map((nft) => (
-      <NFTCard openLendModal={openLendModal} {...nft} />
+    {nfts.map((nft, index) => (
+      <NFTCard
+        key={`nft-list-${nft.collection}-${nft.tokenId}-${index}`}
+        openLendModal={openLendModal}
+        {...nft}
+      />
     ))}
   </Container>
 );

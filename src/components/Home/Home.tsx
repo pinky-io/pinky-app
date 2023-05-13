@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import { useQuery } from "@apollo/client";
 import { Box, Tab, Tabs } from "@mui/material";
 import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList";
 import { colors } from "../../constants";
+import { GET_EVENTS_DOCUMENT } from "../../graphql";
 
 function a11yProps(index: number) {
   return {
@@ -39,6 +40,10 @@ const Home = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const { data } = useQuery(GET_EVENTS_DOCUMENT);
+
+  console.log({ data });
 
   return (
     <>

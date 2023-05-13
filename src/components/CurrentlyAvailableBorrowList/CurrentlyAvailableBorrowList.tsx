@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BorrowModal } from "../BorrowModal";
-import { NFTData, NFTCard } from "../NFTCard";
-import styled from "@emotion/styled";
+import { NFTData } from "../NFTCard";
 import { NFTList } from "../NFTList";
 
 const props = {
@@ -14,15 +13,6 @@ const props = {
   lendDuration: 2,
   status: "AVAILABLE",
 } as const;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  gap: 1rem;
-`;
 
 export const CurrentlyAvailableBorrowList = () => {
   const [borrowModalOpen, setBorrowModalOpen] = useState(false);
