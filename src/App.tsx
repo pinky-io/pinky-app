@@ -1,12 +1,7 @@
-import { Routes } from "./router/Routes"
-import { Header } from "./components"
+import { Routes } from "./router/Routes";
 
 function App() {
-  return (
-    <>
-      <Routes />
-    </>
-  )
+  return <Routes />;
 }
 
-export default App
+export default App;
