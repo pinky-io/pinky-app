@@ -27,7 +27,7 @@ export type NFTData = {
 };
 
 type NFTCardProps = NFTData & {
-  openLendModal(nft: NFTData): void;
+  openLendModal?: (nft: NFTData) => void;
 };
 
 export const NFTCard = ({
@@ -41,7 +41,7 @@ export const NFTCard = ({
 }: NFTCardProps) => {
   console.log(type);
   const handleLend = () => {
-    openLendModal({
+    openLendModal?.({
       collection,
       tokenId,
       lendDuration,

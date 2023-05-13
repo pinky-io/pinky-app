@@ -1,10 +1,10 @@
-import { useState } from "react"
-
-import { Box, Tab, Tabs } from "@mui/material"
-import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList"
-import { colors } from "../../constants"
-import { useQuery } from "@apollo/client"
-import { GET_EVENTS_DOCUMENT } from "../../graphql"
+import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { Box, Tab, Tabs } from "@mui/material";
+import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList";
+import { colors } from "../../constants";
+import { GET_EVENTS_DOCUMENT } from "../../graphql";
+import { LendModal } from "../LendModal";
 
 import { catalogue } from "../../mock"
 
@@ -12,17 +12,17 @@ function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
-  }
+  };
 }
 
 interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
+  children?: React.ReactNode;
+  index: number;
+  value: number;
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
+  const { children, value, index, ...other } = props;
 
   return (
     <div
@@ -34,26 +34,26 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
-  )
+  );
 }
 
 const Home = () => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
-  const { data } = useQuery(GET_EVENTS_DOCUMENT)
+  const { data } = useQuery(GET_EVENTS_DOCUMENT);
 
-  console.log({ data })
+  console.log({ data });
 
   return (
     <>
       <h1>Catalogue</h1>
       <CurrentlyAvailableBorrowList />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

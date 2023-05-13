@@ -5,6 +5,8 @@ import { colors } from "../../constants";
 import s from "./Account.module.css";
 import { NFTList } from "../NFTList";
 import { mywallet, nftborrowed, nftlent } from "../../mock";
+import { LendModal } from "../LendModal";
+import { NFTData } from "../NFTCard";
 
 function a11yProps(index: number) {
   return {
@@ -35,14 +37,37 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
+const props = {
+  collection: {
+    name: "collection name",
+    address: "0",
+  },
+  tokenId: "1",
+  lendDuration: 1,
+  lendPrice: 1,
+  type: "MYWALLET",
+  currency: "ETH",
+} as const;
+
 const Account = () => {
+  const [activeNft, setActiveNft] = useState<NFTData | null>(null);
+  const [lendModalOpen, setlendModalOpen] = useState(false);
   const [value, setValue] = useState(0);
+
+  const handleLendModalOpen = (nft: NFTData) => {
+    setActiveNft(nft);
+    setlendModalOpen(true);
+  };
+
+  const handleLendModalClose = () => {
+    setActiveNft(null);
+    setlendModalOpen(false);
+  };
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  console.log(mywallet);
   return (
     <div className={s.container}>
       <h1>Portfolio</h1>
@@ -58,29 +83,19 @@ const Account = () => {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <NFTList
-          nfts={mywallet}
-          openLendModal={() => {
-            return null;
-          }}
-        />
+        <NFTList nfts={mywallet} openLendModal={handleLendModalOpen} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <NFTList
-          nfts={nftborrowed}
-          openLendModal={() => {
-            return null;
-          }}
-        />
+        <NFTList nfts={nftborrowed} openLendModal={handleLendModalOpen} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <NFTList
-          nfts={nftlent}
-          openLendModal={() => {
-            return null;
-          }}
-        />
+        <NFTList nfts={nftlent} openLendModal={handleLendModalOpen} />
       </TabPanel>
+      <LendModal
+        lendModalOpen={lendModalOpen}
+        handleLendModalClose={handleLendModalClose}
+        nft={activeNft}
+      />
     </div>
   );
 };

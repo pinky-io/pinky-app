@@ -17,6 +17,7 @@ export const BorrowModal = ({
   borrowModalOpen,
 }: BorrowModalProps) => {
   if (!nft) return null;
+  
   return (
     <ActionModal
       title="Lend an NFT"
