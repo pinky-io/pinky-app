@@ -1,5 +1,7 @@
 import { Network, Alchemy, OwnedNft } from "alchemy-sdk";
 import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_EVENTS_DOCUMENT } from "../graphql";
 
 const settings = {
   apiKey: "x97VSdTdeVeFEUpCDRH1ENsSyi5PYPIP",
@@ -8,12 +10,17 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 
-export const useGetNFtsOfWallet = async (walletAddress: string) => {
+export const useGetNFtsOfWallet = (walletAddress?: string) => {
   const [nfts, setNfts] = useState<OwnedNft[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const { data, loading: eventsLoading } = useQuery(GET_EVENTS_DOCUMENT);
+
+  console.log({ data, eventsLoading });
+
   useEffect(() => {
     async function fetchNfts() {
+      if (!walletAddress) return;
       setLoading(true);
 
       try {
@@ -21,10 +28,6 @@ export const useGetNFtsOfWallet = async (walletAddress: string) => {
         setNfts(nftsFetched.ownedNfts);
       } catch (error) {
         console.error(error);
-
-        const nftsFetched = await alchemy.nft.getNftsForOwner(walletAddress);
-        setNfts(nftsFetched.ownedNfts);
-        setLoading(false);
       } finally {
         setLoading(false);
       }

@@ -1,22 +1,22 @@
-import { useState } from "react"
-import { catalogue } from "../../mock"
-import { BorrowModal } from "../BorrowModal"
-import { NFTData } from "../NFTCard"
-import { NFTList } from "../NFTList"
+import { useState } from "react";
+import { catalogue } from "../../mock";
+import { BorrowModal } from "../BorrowModal";
+import { NFTData } from "../NFTCard";
+import { NFTList } from "../NFTList";
 
 export const CurrentlyAvailableBorrowList = () => {
-  const [borrowModalOpen, setBorrowModalOpen] = useState(false)
-  const [activeNft, setactiveNft] = useState<NFTData | null>(null)
+  const [borrowModalOpen, setBorrowModalOpen] = useState(false);
+  const [activeNft, setactiveNft] = useState<NFTData | null>(null);
 
   const handleBorrowModalOpen = (nft: NFTData) => {
-    setactiveNft(nft)
-    setBorrowModalOpen(true)
-  }
+    setactiveNft(nft);
+    setBorrowModalOpen(true);
+  };
 
   const handleBorrowModalClose = () => {
-    setactiveNft(null)
-    setBorrowModalOpen(false)
-  }
+    setactiveNft(null);
+    setBorrowModalOpen(false);
+  };
 
   return (
     <>
@@ -27,5 +27,5 @@ export const CurrentlyAvailableBorrowList = () => {
       />
       <NFTList nfts={catalogue} openLendModal={handleBorrowModalOpen} />
     </>
-  )
-}
+  );
+};

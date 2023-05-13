@@ -1,36 +1,44 @@
-import { useState } from "react"
+import { useState } from "react";
 
-import { Box, Typography } from "@mui/material"
-import { Subtitle } from ".."
-import { ActionModal } from "../ActionModal"
-import { NFTData } from "../NFTCard"
-import { Image } from ".."
-import { Button } from "../Button"
+import { Box, Typography } from "@mui/material";
+import { Subtitle } from "..";
+import { ActionModal } from "../ActionModal";
+import { NFTData } from "../NFTCard";
+import { Image } from "..";
+import { Button } from "../Button";
 
-import { TextField } from "@mui/material"
+import { TextField } from "@mui/material";
 
-import s from "./LendModal.module.css"
+import s from "./LendModal.module.css";
+import { useLend } from "../../hooks/useLend";
 
 type BorrowModalProps = {
-  lendModalOpen: boolean
-  handleLendModalClose: () => void
-  nft: NFTData | null
-}
+  lendModalOpen: boolean;
+  handleLendModalClose: () => void;
+  nft: NFTData | null;
+};
 
 export const LendModal = ({
   handleLendModalClose,
   lendModalOpen,
   nft,
 }: BorrowModalProps) => {
-  const [day, setDay] = useState(1)
-  const [price, setPrice] = useState(0)
+  const [day, setDay] = useState(1);
+  const [price, setPrice] = useState(0);
 
-  if (!nft) return null
+  const { lend } = useLend(nft?.collection.address || "");
+
+  if (!nft) return null;
 
   const handleLend = () => {
-    console.log(day, price)
-    //TODO SINANE appelé envoyer la demande pour lend un nft avec le nombre de jours = day et priceperday = price
-  }
+    lend({
+      address: nft.collection.address,
+      tokenId: nft.tokenId,
+      price,
+      duration: day,
+    });
+  };
+
   return (
     <ActionModal
       title=""
@@ -100,5 +108,5 @@ export const LendModal = ({
         </div>
       </div>
     </ActionModal>
-  )
-}
+  );
+};
