@@ -5,6 +5,10 @@ import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { goerli } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
+type RainbowKitWrapperProps = {
+  children: React.ReactNode;
+};
+
 const { chains, publicClient } = configureChains([goerli], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
@@ -18,10 +22,6 @@ const wagmiConfig = createConfig({
   connectors,
   publicClient,
 });
-
-type RainbowKitWrapperProps = {
-  children: React.ReactNode;
-};
 
 export const RainbowKitWrapper = ({ children }: RainbowKitWrapperProps) => {
   return (
