@@ -1,28 +1,26 @@
-// import React from 'react';
+import { useState } from "react";
 
-import { useState } from "react"
-
-import { Box, Tab, Tabs } from "@mui/material"
-import { colors } from "../../constants"
-
-import { NFTCard } from "../NFTCard"
-import { mywallet, nftborrowed, nftlent } from "../../mock"
+import { Box, Tab, Tabs } from "@mui/material";
+import { colors } from "../../constants";
+import s from "./Account.module.css";
+import { NFTList } from "../NFTList";
+import { mywallet, nftborrowed, nftlent } from "../../mock";
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
-  }
+  };
 }
 
 interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
+  children?: React.ReactNode;
+  index: number;
+  value: number;
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
+  const { children, value, index, ...other } = props;
 
   return (
     <div
@@ -34,19 +32,17 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
-  )
+  );
 }
 
-import s from "./Account.module.css"
-
 const Account = () => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
-  console.log(mywallet)
+  console.log(mywallet);
   return (
     <div className={s.container}>
       <h1>Portfolio</h1>
@@ -62,49 +58,31 @@ const Account = () => {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <div className={s.nftList}>
-          {mywallet.map((nftData, i) => (
-            <NFTCard
-              key={`nft-wallet-${i}`}
-              openLendModal={() => {
-                return null
-              }}
-              {...nftData}
-              type="MYWALLET"
-            />
-          ))}
-        </div>
+        <NFTList
+          nfts={mywallet}
+          openLendModal={() => {
+            return null;
+          }}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div className={s.nftList}>
-          {nftborrowed.map((nftData, i) => (
-            <NFTCard
-              key={`nft-wallet-${i}`}
-              openLendModal={() => {
-                return null
-              }}
-              {...nftData}
-              type="BORROWED"
-            />
-          ))}
-        </div>
+        <NFTList
+          nfts={nftborrowed}
+          openLendModal={() => {
+            return null;
+          }}
+        />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <div className={s.nftList}>
-          {nftlent.map((nftData, i) => (
-            <NFTCard
-              key={`nft-wallet-${i}`}
-              openLendModal={() => {
-                return null
-              }}
-              {...nftData}
-              type="LENT"
-            />
-          ))}
-        </div>
+        <NFTList
+          nfts={nftlent}
+          openLendModal={() => {
+            return null;
+          }}
+        />
       </TabPanel>
     </div>
-  )
-}
+  );
+};
 
-export default Account
+export default Account;

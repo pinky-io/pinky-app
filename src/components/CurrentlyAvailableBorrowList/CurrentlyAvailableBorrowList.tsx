@@ -11,7 +11,8 @@ const props = {
   tokenId: "0",
   lendPrice: 0.1,
   lendDuration: 2,
-  status: "AVAILABLE",
+  currency: "ETH",
+  type: "AVAILABLE",
 } as const;
 
 export const CurrentlyAvailableBorrowList = () => {

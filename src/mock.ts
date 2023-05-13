@@ -1,25 +1,13 @@
-export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED"
+import { NFTData } from "./components/NFTCard";
 
-interface Nft {
-  collection: {
-    name: string
-    address: string
-  }
-  tokenId: string
-  lendPrice?: number
-  lendDuration?: number
-  currency: string
-  status: NFTStatus
-}
-
-export const catalogue: Array<Nft> = [
+export const catalogue: Array<NFTData> = [
   {
     collection: { name: "DeGod", address: "0x000000000" },
     tokenId: "1314",
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "AVAILABLE",
   },
   {
     collection: { name: "Doodles", address: "0x000000000" },
@@ -27,7 +15,7 @@ export const catalogue: Array<Nft> = [
     lendDuration: 25,
     lendPrice: 0.018,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "AVAILABLE",
   },
   {
     collection: { name: "Nyoling", address: "0x000000000" },
@@ -35,7 +23,7 @@ export const catalogue: Array<Nft> = [
     lendDuration: 54,
     lendPrice: 0.003,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "AVAILABLE",
   },
   {
     collection: { name: "mfer", address: "0x000000000" },
@@ -43,7 +31,7 @@ export const catalogue: Array<Nft> = [
     lendDuration: 14,
     lendPrice: 0.048,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "AVAILABLE",
   },
   {
     collection: { name: "DeGod", address: "0x000000000" },
@@ -51,18 +39,18 @@ export const catalogue: Array<Nft> = [
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "AVAILABLE",
   },
-]
+];
 
-export const mywallet: Array<Nft> = [
+export const mywallet: Array<NFTData> = [
   {
     collection: { name: "DeGod", address: "0x000000000" },
     tokenId: "1314",
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "MYWALLET",
   },
   {
     collection: { name: "Doodles", address: "0x000000000" },
@@ -70,7 +58,7 @@ export const mywallet: Array<Nft> = [
     lendDuration: 25,
     lendPrice: 0.018,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "MYWALLET",
   },
   {
     collection: { name: "Nyoling", address: "0x000000000" },
@@ -78,7 +66,7 @@ export const mywallet: Array<Nft> = [
     lendDuration: 54,
     lendPrice: 0.003,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "MYWALLET",
   },
   {
     collection: { name: "mfer", address: "0x000000000" },
@@ -86,7 +74,7 @@ export const mywallet: Array<Nft> = [
     lendDuration: 14,
     lendPrice: 0.048,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "MYWALLET",
   },
   {
     collection: { name: "DeGod", address: "0x000000000" },
@@ -94,18 +82,18 @@ export const mywallet: Array<Nft> = [
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "MYWALLET",
   },
-]
+];
 
-export const nftborrowed: Array<Nft> = [
+export const nftborrowed: Array<NFTData> = [
   {
     collection: { name: "DeGod", address: "0x000000000" },
     tokenId: "1314",
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "BORROWED",
   },
   {
     collection: { name: "Doodles", address: "0x000000000" },
@@ -113,7 +101,7 @@ export const nftborrowed: Array<Nft> = [
     lendDuration: 25,
     lendPrice: 0.018,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "BORROWED",
   },
   {
     collection: { name: "Nyoling", address: "0x000000000" },
@@ -121,7 +109,7 @@ export const nftborrowed: Array<Nft> = [
     lendDuration: 54,
     lendPrice: 0.003,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "BORROWED",
   },
   {
     collection: { name: "mfer", address: "0x000000000" },
@@ -129,7 +117,7 @@ export const nftborrowed: Array<Nft> = [
     lendDuration: 14,
     lendPrice: 0.048,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "BORROWED",
   },
   {
     collection: { name: "DeGod", address: "0x000000000" },
@@ -137,18 +125,18 @@ export const nftborrowed: Array<Nft> = [
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "BORROWED",
   },
-]
+];
 
-export const nftlent: Array<Nft> = [
+export const nftlent: Array<NFTData> = [
   {
     collection: { name: "DeGod", address: "0x000000000" },
     tokenId: "1314",
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "LENT",
   },
   {
     collection: { name: "Doodles", address: "0x000000000" },
@@ -156,7 +144,7 @@ export const nftlent: Array<Nft> = [
     lendDuration: 25,
     lendPrice: 0.018,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "LENT",
   },
   {
     collection: { name: "Nyoling", address: "0x000000000" },
@@ -164,7 +152,7 @@ export const nftlent: Array<Nft> = [
     lendDuration: 54,
     lendPrice: 0.003,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "LENT",
   },
   {
     collection: { name: "mfer", address: "0x000000000" },
@@ -172,7 +160,7 @@ export const nftlent: Array<Nft> = [
     lendDuration: 14,
     lendPrice: 0.048,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "LENT",
   },
   {
     collection: { name: "DeGod", address: "0x000000000" },
@@ -180,6 +168,6 @@ export const nftlent: Array<Nft> = [
     lendDuration: 90,
     lendPrice: 0.208,
     currency: "Eth",
-    status: "AVAILABLE",
+    type: "LENT",
   },
-]
+];

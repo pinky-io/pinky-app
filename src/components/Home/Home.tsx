@@ -75,13 +75,13 @@ const Home = () => {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <CurrentlyAvailableBorrowList />1
+        <CurrentlyAvailableBorrowList />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CurrentlyAvailableBorrowList />2
+        <CurrentlyAvailableBorrowList />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <CurrentlyAvailableBorrowList />3
+        <CurrentlyAvailableBorrowList />
       </TabPanel>
     </>
   )

@@ -1,41 +1,37 @@
-import { Typography } from "@mui/material"
-import { Button } from "../Button"
+import { Typography } from "@mui/material";
+import { Button } from "../Button";
 import {
   Content,
   SubContent,
   Row,
   Subtitle,
-  Column,
   DurationSpan,
   Price,
   Image,
-} from ".."
+} from "..";
 
-import s from "./NFTCard.module.css"
+import s from "./NFTCard.module.css";
 
-export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED"
-export type Types = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT"
+export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT";
 
 export type NFTData = {
   collection: {
-    name: string
-    address: string
-  }
-  tokenId: string
-  lendPrice?: number
-  lendDuration?: number
-  currency: string
-  status: NFTStatus
-}
+    name: string;
+    address: string;
+  };
+  tokenId: string;
+  lendPrice?: number;
+  lendDuration?: number;
+  currency: string;
+  type: NFTStatus;
+};
 
 type NFTCardProps = NFTData & {
-  openLendModal(nft: NFTData): void
-  type: Types
-}
+  openLendModal(nft: NFTData): void;
+};
 
 export const NFTCard = ({
   collection,
-  status,
   tokenId,
   lendDuration,
   lendPrice,
@@ -43,7 +39,7 @@ export const NFTCard = ({
   openLendModal,
   type,
 }: NFTCardProps) => {
-  console.log(type)
+  console.log(type);
   const handleLend = () => {
     openLendModal({
       collection,
@@ -51,9 +47,9 @@ export const NFTCard = ({
       lendDuration,
       lendPrice,
       currency,
-      status,
-    })
-  }
+      type,
+    });
+  };
 
   return (
     <Content className={s.container}>
@@ -94,5 +90,5 @@ export const NFTCard = ({
         {type === "AVAILABLE" && <Button onClick={handleLend}>BORROW</Button>}
       </SubContent>
     </Content>
-  )
-}
+  );
+};
