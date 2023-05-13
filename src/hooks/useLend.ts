@@ -9,7 +9,7 @@ type FormData = {
   address: string;
 };
 
-const CONTRACT_ADDRESS = "0x342a93f32e7884001d8929af68afe50464606fb0" as const;
+export const CONTRACT_ADDRESS = "0x342a93f32e7884001d8929af68afe50464606fb0" as const;
 
 export const useLend = (address: string) => {
   const [formData, setData] = useState<FormData | null>(null);

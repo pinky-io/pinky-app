@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material"
-import { Button } from "../Button"
+import { Typography } from "@mui/material";
+import { Button } from "../Button";
 import {
   Content,
   SubContent,
@@ -8,11 +8,12 @@ import {
   DurationSpan,
   Price,
   Image,
-} from ".."
+} from "..";
 
-import s from "./NFTCard.module.css"
+import s from "./NFTCard.module.css";
+import { utils } from "ethers";
 
-export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT"
+export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT";
 
 export type NFTData = {
   collection: {
@@ -28,8 +29,8 @@ export type NFTData = {
 };
 
 type NFTCardProps = NFTData & {
-  openLendModal?: (nft: NFTData) => void
-}
+  openLendModal?: (nft: NFTData) => void;
+};
 
 export const NFTCard = ({
   collection,
@@ -39,7 +40,7 @@ export const NFTCard = ({
   currency,
   openLendModal,
   type,
-  url
+  url,
 }: NFTCardProps) => {
   const handleLend = () => {
     openLendModal?.({
@@ -49,8 +50,8 @@ export const NFTCard = ({
       lendPrice,
       currency,
       type,
-    })
-  }
+    });
+  };
 
   return (
     <Content className={s.container}>
@@ -75,7 +76,8 @@ export const NFTCard = ({
         {["AVAILABLE", "LENT"].includes(type) && lendPrice && currency ? (
           <Row marginBottom={2}>
             <Price>
-              {lendPrice} {currency} <Subtitle>per day</Subtitle>
+              {utils.formatEther(lendPrice)} {currency}{" "}
+              <Subtitle>per day</Subtitle>
             </Price>
           </Row>
         ) : null}
@@ -91,5 +93,5 @@ export const NFTCard = ({
         {type === "AVAILABLE" && <Button onClick={handleLend}>Borrow</Button>}
       </SubContent>
     </Content>
-  )
-}
+  );
+};

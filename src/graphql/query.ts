@@ -7,6 +7,8 @@ export const GET_EVENTS_DOCUMENT = gql`
       collectionAddress
       tokenID
       owner
+      pricePerDay
+      duration
     }
     rents(first: 5) {
       id
