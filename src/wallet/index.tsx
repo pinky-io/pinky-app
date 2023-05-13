@@ -34,6 +34,9 @@ const wagmiConfig = createConfig({
 })
 
 const myTheme = merge(darkTheme(), {
+  colors: {
+    accentColor: "#E94560 ",
+  },
   fonts: {
     body: "roboto",
   },
