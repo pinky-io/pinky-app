@@ -3,6 +3,8 @@ import { useState } from "react"
 import { Box, Tab, Tabs } from "@mui/material"
 import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList"
 import { colors } from "../../constants"
+import { useQuery } from "@apollo/client"
+import { GET_EVENTS_DOCUMENT } from "../../graphql"
 
 function a11yProps(index: number) {
   return {
