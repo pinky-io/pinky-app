@@ -6,6 +6,7 @@ import {
   darkTheme,
   Theme,
 } from "@rainbow-me/rainbowkit"
+// @ts-ignore
 import merge from "lodash.merge"
 import { WagmiConfig, configureChains, createConfig } from "wagmi"
 import { goerli, polygonMumbai } from "wagmi/chains"

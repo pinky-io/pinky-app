@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from "react"
 import { Profil } from "../Icons"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
