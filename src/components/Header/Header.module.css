@@ -1,6 +1,71 @@
 .container {
+  position: sticky;
+  top: 0;
+
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #16213e;
+  background: #16213e;
+  padding: 16px 32px;
+  border-radius: 30px;
+
+  margin: 45px 50px;
 }
 
 .logo {
+  font-family: "PPNeueBit";
+  font-weight: 700;
+  font-size: 68px;
+  letter-spacing: 0.4px;
+  color: #e94560;
+  text-decoration: none;
+}
+
+.rightContainer {
+  display: flex;
+}
+
+.connectButton {
+  height: 40px;
+}
+
+.profilContainer {
+  width: 40px;
+  height: 40px;
+
+  background: #1a1b1f;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.profilContainer:hover {
+  transform: scale(1.08);
+  transition: transform 0.3s;
+}
+
+.profil {
+  width: 36px;
+  height: 36px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 8px 32px;
+    margin: 16px 4px;
+  }
 }

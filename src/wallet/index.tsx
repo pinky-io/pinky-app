@@ -1,32 +1,49 @@
-import "@rainbow-me/rainbowkit/styles.css";
+import "@rainbow-me/rainbowkit/styles.css"
 
-import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit";
-import { WagmiConfig, configureChains, createConfig } from "wagmi";
-import { goerli } from "wagmi/chains";
-import { publicProvider } from "wagmi/providers/public";
+import {
+  RainbowKitProvider,
+  getDefaultWallets,
+  darkTheme,
+  Theme,
+} from "@rainbow-me/rainbowkit"
+import merge from "lodash.merge"
+import { WagmiConfig, configureChains, createConfig } from "wagmi"
+import { goerli, polygonMumbai } from "wagmi/chains"
+import { publicProvider } from "wagmi/providers/public"
 
 type RainbowKitWrapperProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
-const { chains, publicClient } = configureChains([goerli], [publicProvider()]);
+const { chains, publicClient } = configureChains(
+  [goerli, polygonMumbai],
+  [publicProvider()]
+)
 
 const { connectors } = getDefaultWallets({
   appName: "PinkyApp",
   projectId: "pinkyapp",
   chains,
-});
+})
 
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
   publicClient,
-});
+})
+
+const myTheme = merge(darkTheme(), {
+  fonts: {
+    body: "roboto",
+  },
+} as Theme)
 
 export const RainbowKitWrapper = ({ children }: RainbowKitWrapperProps) => {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
+      <RainbowKitProvider chains={chains} theme={myTheme}>
+        {children}
+      </RainbowKitProvider>
     </WagmiConfig>
-  );
-};
+  )
+}

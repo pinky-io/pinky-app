@@ -3,11 +3,11 @@ import { Header } from "./"
 
 export const Layout = ({}) => {
   return (
-    <>
+    <div className="layout">
       <Header />
-      <main>
+      <main className="main">
         <Outlet />
       </main>
-    </>
+    </div>
   )
 }

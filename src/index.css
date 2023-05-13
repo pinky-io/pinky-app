@@ -1,4 +1,26 @@
-:root {
+@font-face {
+  font-family: PPNeueBit;
+  src: local("PPNeueBit"), url("fonts/PPNeueBit-Bold.otf") format("opentype");
+  font-weight: bold;
+}
+
+body {
+  background-color: #1a1a2e;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.main {
+  padding: 0 80px;
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 0 8px;
+  }
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -66,4 +88,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
