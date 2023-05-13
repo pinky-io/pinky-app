@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { RentContainer } from "../";
+import { Image, RentContainer, Subtitle } from "../";
 import { ActionModal } from "../ActionModal";
 import { Box, Typography } from "@mui/material";
 import styled from "@emotion/styled";
-import { NFTCard, NFTData, Subtitle } from "../NFTCard";
-import { Image } from "../NFTCard";
+import { NFTCard, NFTData } from "../NFTCard";
 import { Button } from "../Button";
 
 const Container = styled.div`

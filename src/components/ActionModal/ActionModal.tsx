@@ -1,7 +1,6 @@
 import { Box, Modal, Typography } from "@mui/material";
 import { colors } from "../../constants";
 import styled from "@emotion/styled";
-import { Image } from "../NFTCard";
 
 type ActionModalProps = {
   children: React.ReactNode;
@@ -9,20 +8,6 @@ type ActionModalProps = {
   handleClose: () => void;
   title: string;
 };
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: colors.PRIMARY,
-
-  boxShadow: 24,
-  p: 4,
-  color: colors.FONT,
-  borderRadius: "24px",
-} as const;
 
 const Content = styled(Box)`
   position: absolute;
@@ -56,9 +41,7 @@ export const ActionModal = ({
         <Typography variant="h6" component="h2">
           {title}
         </Typography>
-        <Flex>
-          {children}
-        </Flex>
+        <Flex>{children}</Flex>
       </Content>
     </Modal>
   );
