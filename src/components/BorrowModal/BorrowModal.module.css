@@ -1,0 +1,49 @@
+.container {
+  padding: 42px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.leftContainer {
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputContainer {
+  position: relative;
+  margin-top: 32px;
+}
+
+.inputContainer label {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.test {
+  width: 100%;
+}
+
+.title {
+  font-family: "PPNeueBit";
+  font-weight: 700;
+  font-size: 46px;
+  margin: 0;
+}
+
+.rightContainer {
+  padding: 8px;
+}
+
+.price {
+  font-size: 16px;
+  letter-spacing: 0.15px;
+  color: rgba(255, 255, 255, 0.87);
+  margin: 8px 0;
+}
+
+.button {
+  margin-top: 32px;
+}
