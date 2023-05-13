@@ -37,18 +37,6 @@ function TabPanel(props: TabPanelProps) {
   )
 }
 
-const props = {
-  collection: {
-    name: "collection name",
-    address: "0",
-  },
-  tokenId: "1",
-  lendDuration: 1,
-  lendPrice: 1,
-  type: "MYWALLET",
-  currency: "ETH",
-} as const
-
 const Account = () => {
   const [activeNft, setActiveNft] = useState<NFTData | null>(null)
   const [lendModalOpen, setlendModalOpen] = useState(false)
@@ -71,7 +59,12 @@ const Account = () => {
   return (
     <div className={s.container}>
       <h1>Portfolio</h1>
-      <Tabs value={value} onChange={handleChange} aria-label="portfolio tab">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="portfolio tab"
+        indicatorColor="secondary"
+      >
         {["My wallet", "NFT Borrowed", "NFT Lent"].map((label: string, i) => (
           <Tab
             key={`tab-account-${i}`}
