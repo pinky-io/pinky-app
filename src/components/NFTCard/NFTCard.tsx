@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import styled from "@emotion/styled";
+import { Button } from "../Button";
 
 export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED";
 
@@ -86,6 +87,7 @@ export const NFTCard = ({
             {lendPrice} ETH <span style={styles.subtitle}>per day</span>
           </Price>
         </Row>
+        {status === "AVAILABLE" && <Button>Lend</Button>}
       </SubContent>
     </Content>
   );

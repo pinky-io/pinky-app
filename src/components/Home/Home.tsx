@@ -14,10 +14,6 @@ const Container = styled.div`
   gap: 1rem;
 `;
 
-const Item = styled.div`
-  flex: 1;
-`;
-
 const props = {
   collection: {
     name: "DeGod",
@@ -26,7 +22,7 @@ const props = {
   tokenId: "0",
   lendPrice: 0.1,
   lendDuration: 1,
-  status: "LENT",
+  status: "AVAILABLE",
 } as const;
 
 const Home = () => {
@@ -58,18 +54,13 @@ const Home = () => {
         </>
       </ActionModal>
       <Container>
-        <Item>
-          <NFTCard {...props} />
-        </Item>
-        <Item>
-          <NFTCard {...props} />
-        </Item>
-        <Item>
-          <NFTCard {...props} />
-        </Item>
-        <Item>
-          <NFTCard {...props} />
-        </Item>
+        <NFTCard {...props} />
+
+        <NFTCard {...props} />
+
+        <NFTCard {...props} />
+
+        <NFTCard {...props} />
       </Container>
     </>
   );

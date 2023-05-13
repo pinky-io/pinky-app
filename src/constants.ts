@@ -8,4 +8,4 @@ export const colors = {
   FONT_ALTERNATE,
   PRIMARY,
   SECONDARY,
-};
+} as const;
