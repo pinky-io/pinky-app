@@ -1,6 +1,7 @@
 @font-face {
   font-family: PPNeueBit;
-  src: local("PPNeueBit"), url("fonts/PPNeueBit-Bold.otf") format("opentype");
+  src: local("PPNeueBit"),
+    url("/public/fonts/PPNeueBit-Bold.otf") format("opentype");
   font-weight: bold;
 }
 
