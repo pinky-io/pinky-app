@@ -1,4 +1,5 @@
 import { Box, Modal, Typography } from "@mui/material";
+import { colors } from "../../constants";
 
 type ActionModalProps = {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  color: colors.FONT_ALTERNATE,
 } as const;
 
 export const ActionModal = ({
@@ -26,7 +28,7 @@ export const ActionModal = ({
   return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={style}>
-        <Typography variant="h6" component="h2">
+        <Typography color="black" variant="h6" component="h2">
           Text in a modal
         </Typography>
         {children}
