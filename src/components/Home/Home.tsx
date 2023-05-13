@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Image, RentContainer, Subtitle } from "../";
-import { ActionModal } from "../ActionModal";
-import { Box, Typography } from "@mui/material";
+import { RentContainer } from "../";
 import styled from "@emotion/styled";
 import { NFTCard, NFTData } from "../NFTCard";
-import { Button } from "../Button";
+import { BorrowModal } from "../BorrowModal";
 
 const Container = styled.div`
   display: flex;
@@ -27,54 +25,33 @@ const props = {
 } as const;
 
 const Home = () => {
-  const [lendModalOpen, setLendModalOpen] = useState(false);
+  const [borrowModalOpen, setBorrowModalOpen] = useState(false);
   const [activeNft, setactiveNft] = useState<NFTData | null>(null);
 
-  const handleLendModalOpen = (nft: NFTData) => {
+  const handleBorrowModalOpen = (nft: NFTData) => {
     setactiveNft(nft);
-    setLendModalOpen(true);
+    setBorrowModalOpen(true);
   };
 
-  const handleLendModalClose = () => {
+  const handleBorrowModalClose = () => {
     setactiveNft(null);
-    setLendModalOpen(false);
+    setBorrowModalOpen(false);
   };
 
   return (
     <>
       <RentContainer />
 
-      <ActionModal
-        title="Lend an NFT"
-        open={lendModalOpen}
-        handleClose={handleLendModalClose}
-      >
-        <>
-          <Box display="flex" flexDirection="column" justifyContent="flex-end">
-            <Typography>Duration : {activeNft?.lendDuration} days</Typography>
-            <Typography>Price per day : {activeNft?.lendPrice} ETH</Typography>
-            <Typography>
-              TotalPrice :{" "}
-              {(activeNft?.lendDuration || 0) * (activeNft?.lendPrice || 0)} ETH
-            </Typography>
-          </Box>
-
-          <Box maxWidth="200px">
-            <Image src="/nft.png" alt="nft" />
-            <Box my={2}>
-              <Typography>{activeNft?.collection.name}</Typography>
-              <Subtitle>#{activeNft?.tokenId}</Subtitle>
-            </Box>
-
-            <Button>Lend</Button>
-          </Box>
-        </>
-      </ActionModal>
+      <BorrowModal
+        borrowModalOpen={borrowModalOpen}
+        handleBorrowModalClose={handleBorrowModalClose}
+        nft={activeNft}
+      />
       <Container>
-        <NFTCard openLendModal={handleLendModalOpen} {...props} />
-        <NFTCard openLendModal={handleLendModalOpen} {...props} />
-        <NFTCard openLendModal={handleLendModalOpen} {...props} />
-        <NFTCard openLendModal={handleLendModalOpen} {...props} />
+        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
+        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
+        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
+        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
       </Container>
     </>
   );

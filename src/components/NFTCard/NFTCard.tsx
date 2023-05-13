@@ -1,6 +1,15 @@
 import { Typography } from "@mui/material";
 import { Button } from "../Button";
-import { Content, SubContent, Row, Subtitle, Column, DurationSpan, Price, Image } from "..";
+import {
+  Content,
+  SubContent,
+  Row,
+  Subtitle,
+  Column,
+  DurationSpan,
+  Price,
+  Image,
+} from "..";
 
 export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED";
 
@@ -19,8 +28,6 @@ type NFTCardProps = NFTData & {
   openLendModal(nft: NFTData): void;
 };
 
-
-
 export const NFTCard = ({
   collection,
   status,
@@ -29,6 +36,17 @@ export const NFTCard = ({
   lendPrice,
   openLendModal,
 }: NFTCardProps) => {
+  
+  const handleLend = () => {
+    openLendModal({
+      collection,
+      tokenId,
+      lendDuration,
+      lendPrice,
+      status,
+    });
+  };
+
   return (
     <Content>
       <Image src="/nft.png" />
@@ -46,21 +64,7 @@ export const NFTCard = ({
             {lendPrice} ETH <Subtitle>per day</Subtitle>
           </Price>
         </Row>
-        {status === "AVAILABLE" && (
-          <Button
-            onClick={() =>
-              openLendModal({
-                lendPrice,
-                collection,
-                tokenId,
-                lendDuration,
-                status,
-              })
-            }
-          >
-            Lend
-          </Button>
-        )}
+        {status === "AVAILABLE" && <Button onClick={handleLend}>Rent</Button>}
       </SubContent>
     </Content>
   );
