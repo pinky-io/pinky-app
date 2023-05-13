@@ -6,6 +6,8 @@ import { colors } from "../../constants"
 import { useQuery } from "@apollo/client"
 import { GET_EVENTS_DOCUMENT } from "../../graphql"
 
+import { catalogue } from "../../mock"
+
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
@@ -49,40 +51,7 @@ const Home = () => {
   return (
     <>
       <h1>Catalogue</h1>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="basic tabs example"
-        indicatorColor="secondary"
-      >
-        <Tab
-          label="Available to Borrow"
-          {...a11yProps(0)}
-          style={{ color: value === 0 ? colors.SECONDARY : colors.FONT }}
-        />
-        <Tab
-          label="Borrowed"
-          {...a11yProps(1)}
-          style={{ color: value === 1 ? colors.SECONDARY : colors.FONT }}
-        />
-        <Tab
-          label="My NFTs"
-          {...a11yProps(2)}
-          style={{
-            color: value === 2 ? colors.SECONDARY : colors.FONT,
-          }}
-        />
-      </Tabs>
-
-      <TabPanel value={value} index={0}>
-        <CurrentlyAvailableBorrowList />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <CurrentlyAvailableBorrowList />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <CurrentlyAvailableBorrowList />
-      </TabPanel>
+      <CurrentlyAvailableBorrowList />
     </>
   )
 }
