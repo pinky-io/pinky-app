@@ -4,7 +4,7 @@ import { Button } from "../Button";
 
 export type NFTStatus = "LENT" | "AVAILABLE" | "OWNED";
 
-type NFTCardProps = {
+export type NFTData = {
   collection: {
     name: string;
     address: string;
@@ -13,6 +13,10 @@ type NFTCardProps = {
   lendPrice?: number;
   lendDuration?: number;
   status: NFTStatus;
+};
+
+type NFTCardProps = NFTData & {
+  openLendModal(nft: NFTData): void;
 };
 
 const Content = styled(Box)`
@@ -39,7 +43,7 @@ const Price = styled(Typography)`
   font-size: 2.125rem;
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   display: block;
   width: 100%;
   border-radius: 5px 5px 0 0;
@@ -49,17 +53,10 @@ const SubContent = styled.div`
   padding: 1rem;
 `;
 
-const styles = {
-  title: {},
-  subtitle: {
-    color: "rgba(255, 255, 255, 0.6)",
-
-    fontSize: "0.75rem",
-  },
-  rightBox: {
-    float: "right",
-  },
-};
+export const Subtitle = styled.span`
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+`;
 
 export const NFTCard = ({
   collection,
@@ -67,27 +64,40 @@ export const NFTCard = ({
   tokenId,
   lendDuration,
   lendPrice,
+  openLendModal,
 }: NFTCardProps) => {
   return (
     <Content>
       <Image src="/nft.png" />
       <SubContent>
-        <Typography variant="h5" style={styles.title}>
-          {collection.name}
-        </Typography>
+        <Typography variant="h5">{collection.name}</Typography>
         <Row>
-          <span style={styles.subtitle}>#{tokenId}</span>
+          <Subtitle>#{tokenId}</Subtitle>
           <Column>
-            <span style={styles.subtitle}>Max duration</span>
+            <Subtitle>Max duration</Subtitle>
             <DurationSpan>{lendDuration} days</DurationSpan>
           </Column>
         </Row>
         <Row>
           <Price>
-            {lendPrice} ETH <span style={styles.subtitle}>per day</span>
+            {lendPrice} ETH <Subtitle>per day</Subtitle>
           </Price>
         </Row>
-        {status === "AVAILABLE" && <Button>Lend</Button>}
+        {status === "AVAILABLE" && (
+          <Button
+            onClick={() =>
+              openLendModal({
+                lendPrice,
+                collection,
+                tokenId,
+                lendDuration,
+                status,
+              })
+            }
+          >
+            Lend
+          </Button>
+        )}
       </SubContent>
     </Content>
   );
