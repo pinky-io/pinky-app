@@ -16,15 +16,16 @@ export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT"
 
 export type NFTData = {
   collection: {
-    name: string
-    address: string
-  }
-  tokenId: string
-  lendPrice?: number
-  lendDuration?: number
-  currency: string
-  type: NFTStatus
-}
+    name: string;
+    address: string;
+  };
+  tokenId: string;
+  lendPrice?: number;
+  lendDuration?: number;
+  currency: string;
+  type: NFTStatus;
+  url?: string;
+};
 
 type NFTCardProps = NFTData & {
   openLendModal?: (nft: NFTData) => void
@@ -38,6 +39,7 @@ export const NFTCard = ({
   currency,
   openLendModal,
   type,
+  url
 }: NFTCardProps) => {
   const handleLend = () => {
     openLendModal?.({
@@ -52,7 +54,7 @@ export const NFTCard = ({
 
   return (
     <Content className={s.container}>
-      <Image src="/nft.png" />
+      <Image src={url || "/nft.png"} />
       <SubContent>
         <Row marginBottom={2}>
           <div>

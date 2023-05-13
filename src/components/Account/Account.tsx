@@ -1,12 +1,14 @@
 import { useState } from "react"
 
-import { Box, Tab, Tabs } from "@mui/material"
-import { colors } from "../../constants"
-import s from "./Account.module.css"
-import { NFTList } from "../NFTList"
-import { mywallet, nftborrowed, nftlent } from "../../mock"
-import { LendModal } from "../LendModal"
-import { NFTData } from "../NFTCard"
+import { Box, Tab, Tabs } from "@mui/material";
+import { colors } from "../../constants";
+import s from "./Account.module.css";
+import { NFTList } from "../NFTList";
+import { mywallet, nftborrowed, nftlent } from "../../mock";
+import { LendModal } from "../LendModal";
+import { NFTData } from "../NFTCard";
+import { useGetNFtsOfWallet } from "../../hooks";
+import { useAccount } from "wagmi";
 
 function a11yProps(index: number) {
   return {
@@ -38,9 +40,12 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const Account = () => {
-  const [activeNft, setActiveNft] = useState<NFTData | null>(null)
-  const [lendModalOpen, setlendModalOpen] = useState(false)
-  const [value, setValue] = useState(0)
+  const { address } = useAccount();
+  const { nfts } = useGetNFtsOfWallet(address);
+
+  const [activeNft, setActiveNft] = useState<NFTData | null>(null);
+  const [lendModalOpen, setlendModalOpen] = useState(false);
+  const [value, setValue] = useState(0);
 
   const handleLendModalOpen = (nft: NFTData) => {
     setActiveNft(nft)
@@ -52,9 +57,9 @@ const Account = () => {
     setlendModalOpen(false)
   }
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
   return (
     <div className={s.container}>
@@ -76,7 +81,21 @@ const Account = () => {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <NFTList nfts={mywallet} openLendModal={handleLendModalOpen} />
+        <NFTList
+          nfts={nfts.map((nft) => ({
+            collection: {
+              address: nft.contract.address,
+              name: nft.contract.name || "",
+            },
+            currency: "ETH",
+            lendDuration: 1,
+            lendPrice: 0.1,
+            tokenId: nft.tokenId,
+            type: "MYWALLET",
+            url: nft.rawMetadata?.image,
+          }))}
+          openLendModal={handleLendModalOpen}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <NFTList nfts={nftborrowed} openLendModal={handleLendModalOpen} />

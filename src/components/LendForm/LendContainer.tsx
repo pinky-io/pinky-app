@@ -1,5 +1,6 @@
 import { LendForm } from "./LendForm";
 import { useForm } from "react-hook-form";
+import { useLend } from "../../hooks/useLend";
 
 export type RentFormValues = {
   duration: number;
@@ -16,8 +17,11 @@ export const LendContainer = ({ address, tokenId }: LendContainerProps) => {
     mode: "onChange",
   });
 
+  const { lend } = useLend(address);
+
   const onSubmit = (data: RentFormValues) => {
-    console.log(data, address, tokenId);
+    console.log({ ...data, address, tokenId });
+    lend({ ...data, address, tokenId });
   };
 
   return (
