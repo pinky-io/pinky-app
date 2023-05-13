@@ -40,6 +40,10 @@ const Home = () => {
     setValue(newValue)
   }
 
+  const { data } = useQuery(GET_EVENTS_DOCUMENT)
+
+  console.log({ data })
+
   return (
     <>
       <h1>Catalogue</h1>
