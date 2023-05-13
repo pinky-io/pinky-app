@@ -39,7 +39,6 @@ export const NFTCard = ({
   openLendModal,
   type,
 }: NFTCardProps) => {
-  console.log(type)
   const handleLend = () => {
     openLendModal?.({
       collection,
