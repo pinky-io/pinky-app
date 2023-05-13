@@ -1,58 +1,80 @@
 import { useState } from "react";
-import { RentContainer } from "../";
-import styled from "@emotion/styled";
-import { NFTCard, NFTData } from "../NFTCard";
-import { BorrowModal } from "../BorrowModal";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  gap: 1rem;
-`;
+import { Box, Tab, Tabs } from "@mui/material";
+import { CurrentlyAvailableBorrowList } from "../CurrentlyAvailableBorrowList";
+import { colors } from "../../constants";
 
-const props = {
-  collection: {
-    name: "DeGod",
-    address: "0",
-  },
-  tokenId: "0",
-  lendPrice: 0.1,
-  lendDuration: 2,
-  status: "AVAILABLE",
-} as const;
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
 
 const Home = () => {
-  const [borrowModalOpen, setBorrowModalOpen] = useState(false);
-  const [activeNft, setactiveNft] = useState<NFTData | null>(null);
+  const [value, setValue] = useState(0);
 
-  const handleBorrowModalOpen = (nft: NFTData) => {
-    setactiveNft(nft);
-    setBorrowModalOpen(true);
-  };
-
-  const handleBorrowModalClose = () => {
-    setactiveNft(null);
-    setBorrowModalOpen(false);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
   };
 
   return (
     <>
-      <RentContainer />
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="basic tabs example"
+      >
+        <Tab
+          label="Available to Borrow"
+          {...a11yProps(0)}
+          style={{ color: value === 0 ? colors.SECONDARY : colors.FONT }}
+        />
+        <Tab
+          label="Borrowed"
+          {...a11yProps(1)}
+          style={{ color: value === 1 ? colors.SECONDARY : colors.FONT }}
+        />
+        <Tab
+          label="My NFTs"
+          {...a11yProps(2)}
+          style={{
+            color: value === 2 ? colors.SECONDARY : colors.FONT,
+          }}
+        />
+      </Tabs>
 
-      <BorrowModal
-        borrowModalOpen={borrowModalOpen}
-        handleBorrowModalClose={handleBorrowModalClose}
-        nft={activeNft}
-      />
-      <Container>
-        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
-        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
-        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
-        <NFTCard openLendModal={handleBorrowModalOpen} {...props} />
-      </Container>
+      <TabPanel value={value} index={0}>
+        <CurrentlyAvailableBorrowList />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <CurrentlyAvailableBorrowList />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <CurrentlyAvailableBorrowList />
+      </TabPanel>
     </>
   );
 };

@@ -39,7 +39,7 @@ export const BorrowModal = ({
             <Subtitle>#{nft.tokenId}</Subtitle>
           </Box>
 
-          <Button>Rent</Button>
+          <Button>Borrow</Button>
         </Box>
       </>
     </ActionModal>

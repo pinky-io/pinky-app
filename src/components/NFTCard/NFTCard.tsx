@@ -64,7 +64,7 @@ export const NFTCard = ({
             {lendPrice} ETH <Subtitle>per day</Subtitle>
           </Price>
         </Row>
-        {status === "AVAILABLE" && <Button onClick={handleLend}>Rent</Button>}
+        {status === "AVAILABLE" && <Button onClick={handleLend}>Borrow</Button>}
       </SubContent>
     </Content>
   );
