@@ -10,8 +10,6 @@ export const CurrentlyAvailableBorrowList = () => {
 
   const { data, eventsLoading } = useAvailableNFTBorrow();
 
-  console.log({ data, eventsLoading });
-
   const handleBorrowModalOpen = (nft: NFTData) => {
     setactiveNft(nft);
     setBorrowModalOpen(true);

@@ -3,14 +3,14 @@ import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { Subtitle } from "..";
 import { ActionModal } from "../ActionModal";
-import { NFTData } from "../NFTCard";
-import { Image } from "..";
+import { ImageContainer, NFTData } from "../NFTCard";
 import { Button } from "../Button";
 
 import { TextField } from "@mui/material";
 
 import s from "./LendModal.module.css";
 import { useLend } from "../../hooks/useLend";
+import { Asset } from "@center-inc/react";
 
 type BorrowModalProps = {
   lendModalOpen: boolean;
@@ -100,7 +100,13 @@ export const LendModal = ({
           </div>
         </div>
         <div className={s.rightContainer}>
-          <Image src="/nft.png" alt="nft" />
+          <ImageContainer>
+            <Asset
+              address={nft.collection.address}
+              tokenId={nft.tokenId}
+              network="ethereum-goerli"
+            />
+          </ImageContainer>
           <Box my={2}>
             <Typography>{nft.collection.name}</Typography>
             <Subtitle>#{nft.tokenId}</Subtitle>

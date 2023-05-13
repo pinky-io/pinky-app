@@ -18,3 +18,14 @@ export const GET_EVENTS_DOCUMENT = gql`
     }
   }
 `;
+
+export const GET_RENTS_DOCUMENT = gql`
+  query getRentsByBorrower($BorrowerToFind: String!) {
+    rents(where: { borrower: $BorrowerToFind }) {
+      id
+      collectionAddress
+      tokenID
+      borrower
+    }
+  }
+`;

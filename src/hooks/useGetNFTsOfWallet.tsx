@@ -14,10 +14,6 @@ export const useGetNFtsOfWallet = (walletAddress?: string) => {
   const [nfts, setNfts] = useState<OwnedNft[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const { data, loading: eventsLoading } = useQuery(GET_EVENTS_DOCUMENT);
-
-  console.log({ data, eventsLoading });
-
   useEffect(() => {
     async function fetchNfts() {
       if (!walletAddress) return;

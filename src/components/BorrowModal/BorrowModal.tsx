@@ -1,12 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import { Subtitle } from "..";
 import { ActionModal } from "../ActionModal";
-import { NFTData } from "../NFTCard";
+import { ImageContainer, NFTData } from "../NFTCard";
 import { Image } from "..";
 import { Button } from "../Button";
 
 import s from "./BorrowModal.module.css";
 import { useBorrow } from "../../hooks/useBorrow";
+import { Asset } from "@center-inc/react";
 
 type BorrowModalProps = {
   borrowModalOpen: boolean;
@@ -19,8 +20,6 @@ export const BorrowModal = ({
   handleBorrowModalClose,
   borrowModalOpen,
 }: BorrowModalProps) => {
-  console.log(nft?.lendPrice, nft?.lendDuration);
-
   const { borrow } = useBorrow(
     nft?.collection.address || "",
     nft?.tokenId || "",
@@ -57,7 +56,13 @@ export const BorrowModal = ({
           </div>
         </div>
         <div className={s.rightContainer}>
-          <Image src="/nft.png" alt="nft" />
+          <ImageContainer>
+            <Asset
+              address={nft.collection.address}
+              tokenId={nft.tokenId}
+              network="ethereum-goerli"
+            />
+          </ImageContainer>
           <Box my={2}>
             <Typography>{nft.collection.name}</Typography>
             <Subtitle>#{nft.tokenId}</Subtitle>
