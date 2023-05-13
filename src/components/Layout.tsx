@@ -1,15 +1,13 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"
+import { Header } from "./"
 
 export const Layout = ({}) => {
   return (
     <>
-      <header>
-        <ConnectButton />
-      </header>
+      <Header />
       <main>
         <Outlet />
       </main>
     </>
-  );
-};
+  )
+}
