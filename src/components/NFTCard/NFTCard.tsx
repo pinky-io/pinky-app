@@ -55,6 +55,8 @@ export const NFTCard = ({
     })
   }
 
+  console.log(lendPrice, currency)
+
   return (
     <Content className={s.container}>
       <div className={s.imageContainer}>
@@ -92,17 +94,14 @@ export const NFTCard = ({
         {["AVAILABLE", "LENT"].includes(type) && lendPrice && currency ? (
           <Row marginBottom={2}>
             <Price>
-              {utils.formatEther(lendPrice)} {currency}{" "}
-              <Subtitle>per day</Subtitle>
+              {/* {utils.formatEther(lendPrice)} {currency}{" "} */}
+              {lendPrice} {currency} <Subtitle>per day</Subtitle>
             </Price>
           </Row>
         ) : null}
         {type === "BORROWED" && lendDuration ? (
           <Row marginBottom={2}>
-            <Price>
-              {/* TODO CALCUL DAYS LEFT */}
-              19 days left
-            </Price>
+            <Price>19 days left</Price>
           </Row>
         ) : null}
         {type === "MYWALLET" && <Button onClick={handleLend}>Lend</Button>}

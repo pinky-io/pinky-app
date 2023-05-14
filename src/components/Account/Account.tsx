@@ -1,31 +1,31 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { Box, Tab, Tabs } from "@mui/material";
-import { colors } from "../../constants";
-import s from "./Account.module.css";
-import { NFTList } from "../NFTList";
-import { mywallet, nftborrowed, nftlent } from "../../mock";
-import { LendModal } from "../LendModal";
-import { NFTData } from "../NFTCard";
-import { useGetNFtsOfWallet } from "../../hooks";
-import { useAccount } from "wagmi";
-import { useBorrowedNFTs } from "../../hooks/useBorrowedNFTs";
+import { Box, Tab, Tabs } from "@mui/material"
+import { colors } from "../../constants"
+import s from "./Account.module.css"
+import { NFTList } from "../NFTList"
+import { mywallet, nftborrowed, nftlent } from "../../mock"
+import { LendModal } from "../LendModal"
+import { NFTData } from "../NFTCard"
+import { useGetNFtsOfWallet } from "../../hooks"
+import { useAccount } from "wagmi"
+import { useBorrowedNFTs } from "../../hooks/useBorrowedNFTs"
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
-  };
+  }
 }
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+  children?: React.ReactNode
+  index: number
+  value: number
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props
 
   return (
     <div
@@ -37,31 +37,31 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
-  );
+  )
 }
 
 const Account = () => {
-  const { address } = useAccount();
-  const { nfts } = useGetNFtsOfWallet(address);
+  const { address } = useAccount()
+  const { nfts } = useGetNFtsOfWallet(address)
 
-  const [activeNft, setActiveNft] = useState<NFTData | null>(null);
-  const [lendModalOpen, setlendModalOpen] = useState(false);
-  const [value, setValue] = useState(0);
-  const { data, eventsLoading } = useBorrowedNFTs(address || "");
+  const [activeNft, setActiveNft] = useState<NFTData | null>(null)
+  const [lendModalOpen, setlendModalOpen] = useState(false)
+  const [value, setValue] = useState(0)
+  const { data, eventsLoading } = useBorrowedNFTs(address || "")
 
   const handleLendModalOpen = (nft: NFTData) => {
-    setActiveNft(nft);
-    setlendModalOpen(true);
-  };
+    setActiveNft(nft)
+    setlendModalOpen(true)
+  }
 
   const handleLendModalClose = () => {
-    setActiveNft(null);
-    setlendModalOpen(false);
-  };
+    setActiveNft(null)
+    setlendModalOpen(false)
+  }
 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <div className={s.container}>
@@ -121,7 +121,7 @@ const Account = () => {
         nft={activeNft}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Account;
+export default Account
