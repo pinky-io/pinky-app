@@ -11,6 +11,8 @@
   border-radius: 30px;
 
   margin: 45px 50px;
+
+  z-index: 99;
 }
 
 .logo {
