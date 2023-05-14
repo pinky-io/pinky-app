@@ -1,5 +1,6 @@
 .container {
   width: 264px;
+  overflow: hidden;
 }
 
 .imageContainer {
