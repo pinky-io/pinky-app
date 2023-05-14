@@ -18,7 +18,6 @@
 .inputContainer {
   position: relative;
   margin-top: 32px;
-  z-index: -1;
 }
 
 .inputContainer label {

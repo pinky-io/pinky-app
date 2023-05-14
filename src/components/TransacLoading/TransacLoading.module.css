@@ -5,6 +5,7 @@
   right: 0;
   bottom: 0;
   background-color: #16213e;
+  z-index: 1;
 }
 
 .closeContainer {
