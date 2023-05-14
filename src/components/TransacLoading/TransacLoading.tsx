@@ -10,6 +10,7 @@ import s from "./TransacLoading.module.css"
 interface TransacLoadingProps {
   isLoading: boolean
   isSuccess: boolean
+  isError: boolean
   onClose: () => void
   onCloseModal: () => void
 }
@@ -17,6 +18,7 @@ interface TransacLoadingProps {
 const TransacLoading: FC<TransacLoadingProps> = ({
   isLoading,
   isSuccess,
+  isError,
   onClose,
   onCloseModal,
 }) => {
@@ -48,9 +50,9 @@ const TransacLoading: FC<TransacLoadingProps> = ({
           </div>
         ) : isSuccess ? (
           <Alert severity="success">Transaction confirmed</Alert>
-        ) : (
+        ) : isError ? (
           <Alert severity="error">Transaction failed</Alert>
-        )}
+        ) : null}
       </div>
     </div>
   )

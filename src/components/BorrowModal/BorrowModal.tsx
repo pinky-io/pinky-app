@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Box, Typography } from "@mui/material"
 import { Subtitle } from ".."
@@ -22,17 +22,18 @@ export const BorrowModal = ({
   handleBorrowModalClose,
   borrowModalOpen,
 }: BorrowModalProps) => {
-  // TODO SINANE SUPPRIMER LES STATES
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [isShowLoading, setIsShowLoading] = useState<boolean>(false)
 
-  const { borrow } = useBorrow(
+  const { borrow, isLoading, isSuccess, isError } = useBorrow(
     nft?.collection.address || "",
     nft?.tokenId || "",
     nft?.lendPrice || 0,
     nft?.lendDuration || 0
   )
+
+  useEffect(() => {
+    if (isLoading && !isShowLoading) setIsShowLoading(true)
+  }, [isLoading, isShowLoading])
 
   if (!nft) return null
 
@@ -46,16 +47,12 @@ export const BorrowModal = ({
       open={borrowModalOpen}
       handleClose={handleBorrowModalClose}
     >
-      {/* <button onClick={() => setIsLoading(!isLoading)}>set Loading</button>
-      <button onClick={() => setIsSuccess(!isSuccess)}>set Success</button>
-      <button onClick={() => setIsShowLoading(!isShowLoading)}>
-        set ShowLoading
-      </button> */}
       <div className={s.container}>
         {isShowLoading ? (
           <TransacLoading
             isLoading={isLoading}
             isSuccess={isSuccess}
+            isError={isError}
             onCloseModal={handleBorrowModalClose}
             onClose={() => setIsShowLoading(false)}
           />

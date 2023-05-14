@@ -10,7 +10,7 @@
 .closeContainer {
   position: absolute;
   right: 0;
-  z-index: 9999;
+  z-index: 9999999;
 }
 
 .subContainer {

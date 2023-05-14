@@ -1,30 +1,31 @@
-import { useWaitForTransaction } from "wagmi";
-import { useErc721Approve, usePinkyProtocolLend } from "../contract/generated";
-import { useEffect, useState } from "react";
+import { useWaitForTransaction } from "wagmi"
+import { useErc721Approve, usePinkyProtocolLend } from "../contract/generated"
+import { useEffect, useState } from "react"
 
 type FormData = {
-  tokenId: string;
-  duration: number;
-  price: number;
-  address: string;
-};
+  tokenId: string
+  duration: number
+  price: number
+  address: string
+}
 
-export const CONTRACT_ADDRESS = "0x342a93f32e7884001d8929af68afe50464606fb0" as const;
+export const CONTRACT_ADDRESS =
+  "0x342a93f32e7884001d8929af68afe50464606fb0" as const
 
 export const useLend = (address: string) => {
-  const [formData, setData] = useState<FormData | null>(null);
+  const [formData, setData] = useState<FormData | null>(null)
   const { write: approve, data: approveData } = useErc721Approve({
     // @ts-ignore
     address,
-  });
+  })
 
-  const { data, isLoading } = useWaitForTransaction({
+  const { data, isLoading, isSuccess, isError } = useWaitForTransaction({
     hash: approveData?.hash,
-  });
+  })
 
   const { write } = usePinkyProtocolLend({
     address: CONTRACT_ADDRESS,
-  });
+  })
 
   useEffect(() => {
     if (data && !isLoading && formData) {
@@ -35,7 +36,7 @@ export const useLend = (address: string) => {
           BigInt(formData.duration),
           BigInt(formData.price),
         ],
-      });
+      })
     }
   }, [
     address,
@@ -46,15 +47,15 @@ export const useLend = (address: string) => {
     isLoading,
     write,
     formData,
-  ]);
+  ])
 
   function lend(data: FormData) {
-    setData(data);
+    setData(data)
 
     approve({
       args: [CONTRACT_ADDRESS, BigInt(data.tokenId)],
-    });
+    })
   }
 
-  return { lend };
-};
+  return { lend, isLoading, isSuccess, isError }
+}
