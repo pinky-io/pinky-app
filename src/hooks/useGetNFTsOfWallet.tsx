@@ -1,7 +1,5 @@
 import { Network, Alchemy, OwnedNft } from "alchemy-sdk";
 import { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_EVENTS_DOCUMENT } from "../graphql";
 
 const settings = {
   apiKey: "x97VSdTdeVeFEUpCDRH1ENsSyi5PYPIP",

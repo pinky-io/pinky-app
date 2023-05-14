@@ -1,15 +1,15 @@
 import { useState } from "react"
 
-import { Box, Tab, Tabs } from "@mui/material"
-import { colors } from "../../constants"
-import s from "./Account.module.css"
-import { NFTList } from "../NFTList"
-import { mywallet, nftborrowed, nftlent } from "../../mock"
-import { LendModal } from "../LendModal"
-import { NFTData } from "../NFTCard"
-import { useGetNFtsOfWallet } from "../../hooks"
-import { useAccount } from "wagmi"
-import { useBorrowedNFTs } from "../../hooks/useBorrowedNFTs"
+import { Box, Tab, Tabs } from "@mui/material";
+import { colors } from "../../constants";
+import s from "./Account.module.css";
+import { NFTList } from "../NFTList";
+import { LendModal } from "../LendModal";
+import { NFTData } from "../NFTCard";
+import { useGetNFtsOfWallet } from "../../hooks";
+import { useAccount } from "wagmi";
+import { useBorrowedNFTs } from "../../hooks/useBorrowedNFTs";
+import { useGetLendByOwner } from "../../hooks/useGetLendByOwner";
 
 function a11yProps(index: number) {
   return {
@@ -44,10 +44,11 @@ const Account = () => {
   const { address } = useAccount()
   const { nfts } = useGetNFtsOfWallet(address)
 
-  const [activeNft, setActiveNft] = useState<NFTData | null>(null)
-  const [lendModalOpen, setlendModalOpen] = useState(false)
-  const [value, setValue] = useState(0)
-  const { data, eventsLoading } = useBorrowedNFTs(address || "")
+  const [activeNft, setActiveNft] = useState<NFTData | null>(null);
+  const [lendModalOpen, setlendModalOpen] = useState(false);
+  const [value, setValue] = useState(0);
+  const { data, eventsLoading } = useBorrowedNFTs(address || "");
+  const { data: lendByOwnerData } = useGetLendByOwner(address || "");
 
   const handleLendModalOpen = (nft: NFTData) => {
     setActiveNft(nft)
@@ -113,7 +114,17 @@ const Account = () => {
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <NFTList nfts={nftlent} openLendModal={handleLendModalOpen} />
+        <NFTList
+          nfts={(lendByOwnerData?.lends || []).map((lend: any) => ({
+            collection: {
+              address: lend.collectionAddress,
+              name: "name",
+            },
+            tokenId: lend.tokenID,
+            type: "LENT",
+          }))}
+          openLendModal={handleLendModalOpen}
+        />
       </TabPanel>
       <LendModal
         lendModalOpen={lendModalOpen}

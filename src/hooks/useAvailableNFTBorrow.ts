@@ -1,8 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { GET_EVENTS_DOCUMENT } from "../graphql";
+import { GET_AVAILABLE_LENDS_DOCUMENT } from "../graphql";
+import { useAccount } from "wagmi";
 
 export const useAvailableNFTBorrow = () => {
-  const { data, loading: eventsLoading } = useQuery(GET_EVENTS_DOCUMENT);
+  const { address } = useAccount();
+  const { data, loading: eventsLoading } = useQuery(
+    GET_AVAILABLE_LENDS_DOCUMENT,
+    { variables: { ExcludedOwner: address || "" } }
+  );
 
-  return { data, eventsLoading };
+  return { data: data, eventsLoading };
 };
