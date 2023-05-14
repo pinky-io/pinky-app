@@ -24,6 +24,10 @@
   text-decoration: none;
 }
 
+.logo svg {
+  margin-right: 12px;
+}
+
 .rightContainer {
   display: flex;
 }
