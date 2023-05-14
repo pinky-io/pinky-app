@@ -35,6 +35,7 @@ export const useLend = (address: string) => {
           address as `0x${string}`,
           BigInt(formData.tokenId),
           BigInt(formData.duration),
+          // @ts-ignore
           BigInt(parseEther(formData.price.toString(), "wei")),
         ],
       });

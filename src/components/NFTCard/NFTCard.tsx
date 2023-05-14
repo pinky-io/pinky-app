@@ -92,8 +92,8 @@ export const NFTCard = ({
         {["AVAILABLE", "LENT"].includes(type) && lendPrice && currency ? (
           <Row marginBottom={2}>
             <Price>
-              {/* {utils.formatEther(lendPrice)} {currency}{" "} */}
-              {lendPrice} {currency} <Subtitle>per day</Subtitle>
+              {utils.formatEther(BigInt(lendPrice))} {currency}
+              <Subtitle> per day</Subtitle>
             </Price>
           </Row>
         ) : null}

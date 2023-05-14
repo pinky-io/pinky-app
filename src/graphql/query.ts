@@ -7,6 +7,8 @@ export const GET_AVAILABLE_LENDS_DOCUMENT = gql`
       collectionAddress
       tokenID
       owner
+      pricePerDay
+      duration
     }
   }
 `;
