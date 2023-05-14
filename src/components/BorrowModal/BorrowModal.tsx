@@ -25,8 +25,6 @@ export const BorrowModal = ({
 }: BorrowModalProps) => {
   const [isShowLoading, setIsShowLoading] = useState<boolean>(false);
 
-  console.log("nft", nft);
-
   const { borrow, isLoading, isSuccess, isError } = useBorrow(
     nft?.collection.address || "",
     nft?.tokenId || "",
@@ -64,10 +62,14 @@ export const BorrowModal = ({
           <p className={s.title}>Rent an NFT</p>
           <div>
             <p className={s.price}>
-              Price per day : {formatEther(BigInt(nft.lendPrice || 0))} {nft.currency}
+              Price per day : {formatEther(BigInt(nft.lendPrice || 0))}{" "}
+              {nft.currency}
             </p>
             <p className={s.price}>
-              Total price : {formatEther(BigInt((nft.lendDuration || 0) * (nft.lendPrice || 0)))}{" "}
+              Total price :{" "}
+              {formatEther(
+                BigInt((nft.lendDuration || 0) * (nft.lendPrice || 0))
+              )}{" "}
               {nft.currency}
             </p>
             <Button className={s.button} onClick={handleBorrow}>

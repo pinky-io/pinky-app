@@ -3,13 +3,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "collectionAddress",
         "type": "address"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256",
         "name": "tokenID",
         "type": "uint256"
@@ -22,13 +22,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "collectionAddress",
         "type": "address"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256",
         "name": "tokenID",
         "type": "uint256"
@@ -41,19 +41,19 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "collectionAddress",
         "type": "address"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256",
         "name": "tokenID",
         "type": "uint256"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "owner",
         "type": "address"
@@ -78,19 +78,19 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "collectionAddress",
         "type": "address"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256",
         "name": "tokenID",
         "type": "uint256"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "borrower",
         "type": "address"
@@ -112,7 +112,11 @@
         "name": "collectionAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "tokenID", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "tokenID",
+        "type": "uint256"
+      }
     ],
     "name": "deleteOffer",
     "outputs": [],
@@ -126,7 +130,11 @@
         "name": "collectionAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "tokenID", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "tokenID",
+        "type": "uint256"
+      }
     ],
     "name": "endRent",
     "outputs": [],
@@ -140,20 +148,36 @@
         "name": "collectionAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "tokenID", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "tokenID",
+        "type": "uint256"
+      }
     ],
     "name": "getLending",
     "outputs": [
       {
         "components": [
-          { "internalType": "address", "name": "owner", "type": "address" },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
           {
             "internalType": "address",
             "name": "collectionAddress",
             "type": "address"
           },
-          { "internalType": "uint256", "name": "tokenID", "type": "uint256" },
-          { "internalType": "uint256", "name": "duration", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "tokenID",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
           {
             "internalType": "uint256",
             "name": "pricePerDay",
@@ -175,13 +199,21 @@
         "name": "collectionAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "tokenID", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "tokenID",
+        "type": "uint256"
+      }
     ],
     "name": "getRenting",
     "outputs": [
       {
         "components": [
-          { "internalType": "address", "name": "borrower", "type": "address" },
+          {
+            "internalType": "address",
+            "name": "borrower",
+            "type": "address"
+          },
           {
             "internalType": "uint256",
             "name": "startingDate",
@@ -200,12 +232,43 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "borrower",
+        "type": "address"
+      }
+    ],
+    "name": "isGuardEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "collectionAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "tokenID", "type": "uint256" },
-      { "internalType": "uint256", "name": "duration", "type": "uint256" },
-      { "internalType": "uint256", "name": "pricePerDay", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "tokenID",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pricePerDay",
+        "type": "uint256"
+      }
     ],
     "name": "lend",
     "outputs": [],
@@ -219,7 +282,11 @@
         "name": "collectionAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "tokenID", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "tokenID",
+        "type": "uint256"
+      }
     ],
     "name": "rent",
     "outputs": [],

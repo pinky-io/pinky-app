@@ -1,5 +1,3 @@
-// @ts-ignore
-import React from "react"
 import { Link } from "react-router-dom"
 import { Profil } from "../Icons"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
