@@ -1,45 +1,48 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-import { Box, Typography } from "@mui/material"
-import { Subtitle } from ".."
-import { ActionModal } from "../ActionModal"
-import { ImageContainer, NFTData } from "../NFTCard"
-import { Button } from "../Button"
-import { TransacLoading } from "../"
+import { Box, Typography } from "@mui/material";
+import { Subtitle } from "..";
+import { ActionModal } from "../ActionModal";
+import { ImageContainer, NFTData } from "../NFTCard";
+import { Button } from "../Button";
+import { TransacLoading } from "../";
 
-import s from "./BorrowModal.module.css"
-import { useBorrow } from "../../hooks/useBorrow"
-import { Asset } from "@center-inc/react"
+import s from "./BorrowModal.module.css";
+import { useBorrow } from "../../hooks/useBorrow";
+import { Asset } from "@center-inc/react";
+import { formatEther } from "viem";
 
 type BorrowModalProps = {
-  borrowModalOpen: boolean
-  handleBorrowModalClose: () => void
-  nft: NFTData | null
-}
+  borrowModalOpen: boolean;
+  handleBorrowModalClose: () => void;
+  nft: NFTData | null;
+};
 
 export const BorrowModal = ({
   nft,
   handleBorrowModalClose,
   borrowModalOpen,
 }: BorrowModalProps) => {
-  const [isShowLoading, setIsShowLoading] = useState<boolean>(false)
+  const [isShowLoading, setIsShowLoading] = useState<boolean>(false);
+
+  console.log("nft", nft);
 
   const { borrow, isLoading, isSuccess, isError } = useBorrow(
     nft?.collection.address || "",
     nft?.tokenId || "",
     nft?.lendPrice || 0,
     nft?.lendDuration || 0
-  )
+  );
 
   useEffect(() => {
-    if (isLoading && !isShowLoading) setIsShowLoading(true)
-  }, [isLoading, isShowLoading])
+    if (isLoading && !isShowLoading) setIsShowLoading(true);
+  }, [isLoading, isShowLoading]);
 
-  if (!nft) return null
+  if (!nft) return null;
 
   const handleBorrow = () => {
-    borrow()
-  }
+    borrow();
+  };
 
   return (
     <ActionModal
@@ -61,10 +64,10 @@ export const BorrowModal = ({
           <p className={s.title}>Rent an NFT</p>
           <div>
             <p className={s.price}>
-              Price per day : {nft.lendPrice} {nft.currency}
+              Price per day : {formatEther(BigInt(nft.lendPrice || 0))} {nft.currency}
             </p>
             <p className={s.price}>
-              Total price : {(nft.lendDuration || 0) * (nft.lendPrice || 0)}{" "}
+              Total price : {formatEther(BigInt((nft.lendDuration || 0) * (nft.lendPrice || 0)))}{" "}
               {nft.currency}
             </p>
             <Button className={s.button} onClick={handleBorrow}>
@@ -87,5 +90,5 @@ export const BorrowModal = ({
         </div>
       </div>
     </ActionModal>
-  )
-}
+  );
+};
