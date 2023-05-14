@@ -1,7 +1,7 @@
 // @ts-ignore
 import React from "react"
 import { Link } from "react-router-dom"
-import { Profil, Logo } from "../Icons"
+import { Profil } from "../Icons"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
 import s from "./Header.module.css"
@@ -11,7 +11,6 @@ const Header = () => {
   return (
     <header className={s.container}>
       <Link className={s.logo} to="/">
-        <Logo />
         Pinky
       </Link>
       <div className={s.rightContainer}>
