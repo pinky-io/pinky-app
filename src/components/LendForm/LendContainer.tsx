@@ -20,7 +20,6 @@ export const LendContainer = ({ address, tokenId }: LendContainerProps) => {
   const { lend } = useLend(address);
 
   const onSubmit = (data: RentFormValues) => {
-    console.log({ ...data, address, tokenId });
     lend({ ...data, address, tokenId });
   };
 

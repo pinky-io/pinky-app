@@ -1,17 +1,11 @@
 import { Typography } from "@mui/material";
 import { Button } from "../Button";
-import {
-  Content,
-  SubContent,
-  Row,
-  Subtitle,
-  DurationSpan,
-  Price,
-  Image,
-} from "..";
+import { Content, SubContent, Row, Subtitle, DurationSpan, Price } from "..";
 
 import s from "./NFTCard.module.css";
 import { utils } from "ethers";
+import { Asset } from "@center-inc/react";
+import styled from "@emotion/styled";
 
 export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT";
 
@@ -25,12 +19,20 @@ export type NFTData = {
   lendDuration?: number;
   currency: string;
   type: NFTStatus;
-  url?: string;
 };
 
 type NFTCardProps = NFTData & {
   openLendModal?: (nft: NFTData) => void;
 };
+
+export const ImageContainer = styled.div`
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 export const NFTCard = ({
   collection,
@@ -40,7 +42,6 @@ export const NFTCard = ({
   currency,
   openLendModal,
   type,
-  url,
 }: NFTCardProps) => {
   const handleLend = () => {
     openLendModal?.({
@@ -55,7 +56,13 @@ export const NFTCard = ({
 
   return (
     <Content className={s.container}>
-      <Image src={url || "/nft.png"} />
+      <ImageContainer>
+        <Asset
+          network="ethereum-goerli"
+          tokenId={tokenId}
+          address={collection.address}
+        />
+      </ImageContainer>
       <SubContent>
         <Row marginBottom={2}>
           <div>
