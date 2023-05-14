@@ -2,9 +2,40 @@
   width: 264px;
 }
 
+.imageContainer {
+  position: relative;
+}
+
+.imageContainer a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.imageContainer a:hover {
+  opacity: 1;
+}
+
+.imageContainer img {
+  width: 100% !important;
+}
+
 .nftInfos {
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: end;
+}
+
+.openSea {
+  position: absolute;
+  top: 0;
+  right: 20px;
 }

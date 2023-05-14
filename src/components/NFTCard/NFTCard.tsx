@@ -1,29 +1,30 @@
-import { Typography } from "@mui/material";
-import { Button } from "../Button";
-import { Content, SubContent, Row, Subtitle, DurationSpan, Price } from "..";
+import { Typography } from "@mui/material"
+import { Button } from "../Button"
+import { Content, SubContent, Row, Subtitle, DurationSpan, Price } from ".."
 
-import s from "./NFTCard.module.css";
-import { utils } from "ethers";
-import { Asset } from "@center-inc/react";
-import styled from "@emotion/styled";
+import s from "./NFTCard.module.css"
+import { utils } from "ethers"
+import { Asset } from "@center-inc/react"
+import styled from "@emotion/styled"
+import { Opensea } from "../Icons"
 
-export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT";
+export type NFTStatus = "AVAILABLE" | "MYWALLET" | "BORROWED" | "LENT"
 
 export type NFTData = {
   collection: {
-    name: string;
-    address: string;
-  };
-  tokenId: string;
-  lendPrice?: number;
-  lendDuration?: number;
-  currency: string;
-  type: NFTStatus;
-};
+    name: string
+    address: string
+  }
+  tokenId: string
+  lendPrice?: number
+  lendDuration?: number
+  currency: string
+  type: NFTStatus
+}
 
 type NFTCardProps = NFTData & {
-  openLendModal?: (nft: NFTData) => void;
-};
+  openLendModal?: (nft: NFTData) => void
+}
 
 export const ImageContainer = styled.div`
   width: 100%;
@@ -32,7 +33,7 @@ export const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
   }
-`;
+`
 
 export const NFTCard = ({
   collection,
@@ -51,18 +52,26 @@ export const NFTCard = ({
       lendPrice,
       currency,
       type,
-    });
-  };
+    })
+  }
 
   return (
     <Content className={s.container}>
-      <ImageContainer>
-        <Asset
-          network="ethereum-goerli"
-          tokenId={tokenId}
-          address={collection.address}
-        />
-      </ImageContainer>
+      <div className={s.imageContainer}>
+        <a
+          href={`https://testnets.opensea.io/assets/goerli/${collection.address}/${tokenId}`}
+          target="_blank"
+        >
+          <Opensea width="48px" className={s.openSea} />
+        </a>
+        <ImageContainer>
+          <Asset
+            network="ethereum-goerli"
+            tokenId={tokenId}
+            address={collection.address}
+          />
+        </ImageContainer>
+      </div>
       <SubContent>
         <Row marginBottom={2}>
           <div>
@@ -100,5 +109,5 @@ export const NFTCard = ({
         {type === "AVAILABLE" && <Button onClick={handleLend}>Borrow</Button>}
       </SubContent>
     </Content>
-  );
-};
+  )
+}
