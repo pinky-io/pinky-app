@@ -41,7 +41,7 @@ export const ActionModal = ({
         <Typography variant="h6" component="h2">
           {title}
         </Typography>
-        <Flex>{children}</Flex>
+        {children}
       </Content>
     </Modal>
   )
